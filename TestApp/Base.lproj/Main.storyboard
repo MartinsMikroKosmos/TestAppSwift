@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,6 +99,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="hNf-ag-bq4"/>
                     <connections>
+                        <outlet property="loginBTN" destination="yZa-za-OK8" id="4VF-Fk-Gi4"/>
                         <outlet property="passwordTF" destination="DVP-lW-eFa" id="AfH-Sq-DGE"/>
                         <outlet property="userNameTF" destination="1Rd-7L-6Av" id="oAa-dH-Hvv"/>
                     </connections>
@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="341" y="18"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="1hi-Ty-Vva">
             <objects>
-                <viewController id="xy8-Db-Cyd" sceneMemberID="viewController">
+                <viewController id="xy8-Db-Cyd" customClass="RegisterViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xgk-0C-PWw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
                         <viewLayoutGuide key="safeArea" id="kfA-TI-ji1"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Einstellungen" selectedImage="gear" catalog="system" id="Qbb-Lf-lKv">
+                    <tabBarItem key="tabBarItem" title="Einstellungen" image="gear" catalog="system" id="Qbb-Lf-lKv">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                 </viewController>
@@ -252,14 +252,14 @@
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VDc-pf-UsE">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VDc-pf-UsE" id="G8a-o1-iyy">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-jq-KSS">
-                                                    <rect key="frame" x="20" y="10.999999999999998" width="353" height="21.333333333333329"/>
+                                                    <rect key="frame" x="20" y="11" width="353" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -279,9 +279,8 @@
                         <viewLayoutGuide key="safeArea" id="ogb-If-wVa"/>
                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="eIW-7o-Jmt">
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="eIW-7o-Jmt">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <imageReference key="selectedImage" image="house.fill" catalog="system" variableValue="1"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3W-Av-m6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -298,15 +297,37 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="shadowColor" systemColor="labelColor"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="SIc-J7-8tB" kind="relationship" relationship="viewControllers" id="i6F-0v-vnk"/>
                         <segue destination="Erk-bw-MjW" kind="relationship" relationship="viewControllers" id="zxd-at-3kL"/>
+                        <segue destination="7FA-v1-sgb" kind="relationship" relationship="viewControllers" id="Qs1-Ai-CMP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNB-Q8-4hb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1150" y="347"/>
+        </scene>
+        <!--SpielFeld-->
+        <scene sceneID="014-co-8tE">
+            <objects>
+                <viewController id="7FA-v1-sgb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Lg-cp-U85">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="m7v-2s-urO"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SpielFeld" image="sportscourt" catalog="system" id="qxy-E7-v2e">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sMa-nt-wkh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2030" y="1376"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -314,7 +335,14 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>
-        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="sportscourt" catalog="system" width="128" height="83"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
