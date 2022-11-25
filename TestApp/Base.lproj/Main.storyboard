@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +28,7 @@
         <!--Log In-->
         <scene sceneID="Rt3-xZ-Rtm">
             <objects>
-                <viewController id="u76-v9-YL3" sceneMemberID="viewController">
+                <viewController id="u76-v9-YL3" customClass="LoginViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0cI-jE-sO9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,7 +70,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log In"/>
                                 <connections>
-                                    <segue destination="bLf-TG-Inc" kind="presentation" modalPresentationStyle="fullScreen" id="imv-Fp-BFS"/>
+                                    <segue destination="bLf-TG-Inc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="imv-Fp-BFS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -177,7 +178,7 @@
                                     <color key="baseBackgroundColor" red="0.2443719506" green="0.38776835799999998" blue="0.53365343809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="bLf-TG-Inc" kind="presentation" modalPresentationStyle="fullScreen" id="WLr-YM-j9Q"/>
+                                    <segue destination="bLf-TG-Inc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="WLr-YM-j9Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,7 +199,7 @@
             </objects>
             <point key="canvasLocation" x="360" y="698"/>
         </scene>
-        <!--Item 2-->
+        <!--Einstellungen-->
         <scene sceneID="XEM-Og-oMc">
             <objects>
                 <viewController id="Erk-bw-MjW" sceneMemberID="viewController">
@@ -206,15 +207,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="kfA-TI-ji1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Qbb-Lf-lKv"/>
+                    <tabBarItem key="tabBarItem" title="Einstellungen" selectedImage="gear" catalog="system" id="Qbb-Lf-lKv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddB-eT-KnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2030" y="698"/>
         </scene>
-        <!--Item 1-->
+        <!--Home-->
         <scene sceneID="r0B-eq-njM">
             <objects>
                 <viewController id="SIc-J7-8tB" sceneMemberID="viewController">
@@ -222,9 +223,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ogb-If-wVa"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="eIW-7o-Jmt"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="eIW-7o-Jmt">
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" variableValue="1"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3W-Av-m6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,11 +254,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WLr-YM-j9Q"/>
+        <segue reference="imv-Fp-BFS"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
