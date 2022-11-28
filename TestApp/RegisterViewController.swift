@@ -24,6 +24,9 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardDismissable()
+        
+        
         registerBTN.isEnabled = false
               
         userNameTF.delegate = self
@@ -32,15 +35,40 @@ class RegisterViewController: UIViewController {
         birthdateTF.delegate = self
         genderTF.delegate = self
         passwordTF.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // KEYBOARD OVERLAPS VIEW
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if self.view.frame.origin.y == 0 && (passwordTF.isFirstResponder) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
     
+    @objc func keyboardWillHide(notifaction: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     
     
     
     // DISMISS KEYBOARD OUTSIDE
+    
+    @objc func dismissKeyboardTouchOutside() {
+        self.view.endEditing(true)
+    }
+    
+    func keyboardDismissable() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardTouchOutside))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     
     // DATA PICKER
     
