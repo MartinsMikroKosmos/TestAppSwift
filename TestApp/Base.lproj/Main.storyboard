@@ -199,7 +199,7 @@
                                     <color key="baseBackgroundColor" red="0.2443719506" green="0.38776835799999998" blue="0.53365343809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="bLf-TG-Inc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="WLr-YM-j9Q"/>
+                                    <action selector="registerUser" destination="xy8-Db-Cyd" eventType="touchUpInside" id="koI-kH-f1X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -223,6 +223,7 @@
                         <outlet property="registerBTN" destination="NBh-tV-jZD" id="KdF-nf-oW1"/>
                         <outlet property="surnameTF" destination="fZj-hp-MS1" id="o0f-Lv-MfZ"/>
                         <outlet property="userNameTF" destination="NKg-mW-h2C" id="ki4-cZ-rqW"/>
+                        <segue destination="bLf-TG-Inc" kind="show" identifier="userDaten" id="p3X-2R-dUj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQa-Ci-vsZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -342,7 +343,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="imv-Fp-BFS"/>
+        <segue reference="p3X-2R-dUj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>

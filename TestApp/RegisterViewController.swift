@@ -4,6 +4,16 @@
 //
 //  Created by Martin Richter on 25.11.22.
 //
+struct User {
+    var username: String
+    var name: String
+    var surename: String
+    var birthdate: String
+    var gender: String
+    var password: String
+}
+
+
 
 import UIKit
 
@@ -31,7 +41,7 @@ class RegisterViewController: UIViewController {
         createDatePicker()
         
         
-        registerBTN.isEnabled = false
+        registerBTN.isEnabled = true
               
         userNameTF.delegate = self
         nameTF.delegate = self
@@ -116,6 +126,23 @@ class RegisterViewController: UIViewController {
     
     // DATA TRANSFER
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinatiomViewController = segue.destination as! MainViewController
+        let user = sender as! User
+        destinatiomViewController.user = user
+    }
+    
+    @IBAction func registerUser() {
+        let username = userNameTF.text ?? ""
+        let name = nameTF.text ?? ""
+        let surname = surnameTF.text ?? ""
+        let birthdate = birthdateTF.text ?? ""
+        let gender = genderTF.text ?? ""
+        let password = passwordTF.text!
+        
+        let user = User(username: username, name: name, surename: surname, birthdate: birthdate, gender: gender, password: password)
+        performSegue(withIdentifier: "userDaten", sender: user)
+    }
     
 }
 
@@ -124,7 +151,16 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        switch textField {
+        case userNameTF:
+            nameTF.becomeFirstResponder()
+        case nameTF:
+            surnameTF.becomeFirstResponder()
+        case surnameTF:
+            birthdateTF.becomeFirstResponder()
+        default: self.view.endEditing(true)
+        }
+        return true
     }
 }
 

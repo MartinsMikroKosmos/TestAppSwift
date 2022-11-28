@@ -9,14 +9,11 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-//    @IBOutlet weak var nameLabel: UILabel!
-    
-//    var user: User!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
 }
