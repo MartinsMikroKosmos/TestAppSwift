@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    
     
     @IBOutlet weak var userNameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Tab outside the Keyboard to hide
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-    
+        
         // Keyboard Types and delegate
         userNameTF.keyboardType = .default
         userNameTF.delegate = self
@@ -36,15 +36,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    
-
-    @IBAction func LogIn(_ sender: UIButton) {
-        var username = userNameTF.text
-        var password = passwordTF.text
-        
-       
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
-}
+    
+    
+    
+    @IBAction func LogIn(_ sender: UITextField) {
+        let username = userNameTF.text
+        let password = passwordTF.text
+        
+            
+            if userNameTF.text == "" || passwordTF.text == ""{
+            } else if (username != "Martin" || password != "1234"){
+                loginBTN.isEnabled = false
+                let alert = UIAlertController(title: "Achtung", message: "Benutzername oder Passwort falsch", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Erneut eingeben", style: .cancel))
+                present(alert, animated: true)
+            } else {
+                loginBTN.isEnabled = true
+            }
+            
+        }
+        
+    }
+    
 
