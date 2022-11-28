@@ -8,6 +8,7 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+     
 
     @IBOutlet weak var userNameTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
@@ -22,9 +23,12 @@ class RegisterViewController: UIViewController {
     let datePicker = UIDatePicker()
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismissable()
+        createDatePicker()
         
         
         registerBTN.isEnabled = false
@@ -34,14 +38,23 @@ class RegisterViewController: UIViewController {
         surnameTF.delegate = self
         birthdateTF.delegate = self
         genderTF.delegate = self
+        
+        genderPicker.delegate = self
+        genderPicker.dataSource = self
+        genderTF.inputView = genderPicker
+        
         passwordTF.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    
+    
+    
     // KEYBOARD OVERLAPS VIEW
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if self.view.frame.origin.y == 0 && (passwordTF.isFirstResponder) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -70,16 +83,81 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    // DATA PICKER
+    
+    // DATE PICKER
+    
+    @objc func datePressed() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        birthdateTF.text = dateFormatter.string(from: datePicker.date)
+
+        genderTF.becomeFirstResponder()
+    }
+    
+    
+    func createDatePicker() {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        birthdateTF.inputView = datePicker
+        birthdateTF.inputAccessoryView = createToolBar()
+    }
+    
+    // TOOLBAR
+    
+    func createToolBar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        
+        toolbar.sizeToFit()
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(datePressed))
+        toolbar.setItems([button], animated: true)
+        
+        return toolbar
+    }
+    
+    // DATA TRANSFER
     
     
 }
 
+
 // TEXTFIELDS
+
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
     }
 }
 
+
 // PICKERS
+
+extension RegisterViewController:  UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView {
+        case genderPicker:
+            return genders.count
+        default: return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case genderPicker:
+            return genders[row]
+        default: return ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView{
+        case genderPicker:
+            genderTF.text = genders[row]
+        default: print("Picker nicht bekannt")
+        }
+        passwordTF.becomeFirstResponder()
+    }
+}
